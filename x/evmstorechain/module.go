@@ -20,6 +20,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"strconv"
+	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 )
 
 var (
@@ -95,6 +96,7 @@ type AppModule struct {
 	keeper        keeper.Keeper
 	accountKeeper types.AccountKeeper
 	bankKeeper    types.BankKeeper
+	slashingKeeper        slashingkeeper.Keeper
 }
 
 func NewAppModule(
@@ -102,12 +104,14 @@ func NewAppModule(
 	keeper keeper.Keeper,
 	accountKeeper types.AccountKeeper,
 	bankKeeper types.BankKeeper,
+	slashingKeeper        slashingkeeper.Keeper,
 ) AppModule {
 	return AppModule{
 		AppModuleBasic: NewAppModuleBasic(cdc),
 		keeper:         keeper,
 		accountKeeper:  accountKeeper,
 		bankKeeper:     bankKeeper,
+		slashingKeeper: slashingKeeper,
 	}
 }
 
