@@ -104,3 +104,30 @@ func GetVoteIDBytes(id uint64) []byte {
 func GetVoteIDFromBytes(bz []byte) uint64 {
 	return binary.BigEndian.Uint64(bz)
 }
+
+// HasMaxVotes checks if a proposed state has received the maximum number of votes.
+func (k Keeper) HasMaxVotes(ctx sdk.Context, blockNum uint64) (uint64, bool) {
+	voteCounts := make(map[uint64]int)
+
+	votes := k.GetVotes(ctx, blockNum)
+
+	for _, vote := range votes {
+		voteCounts[vote.State]++
+	}
+
+	maxVotes := 0
+	var maxState uint64
+	for state, count := range voteCounts {
+		if count > maxVotes {
+			maxVotes = count
+			maxState = state
+		}
+	}
+
+	// If no votes are present return false
+	if maxVotes == 0 {
+		return 0, false
+	}
+
+	return maxState, true
+}
