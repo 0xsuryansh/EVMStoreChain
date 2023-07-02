@@ -105,6 +105,24 @@ func GetVoteIDFromBytes(bz []byte) uint64 {
 	return binary.BigEndian.Uint64(bz)
 }
 
+// GetVotes returns all votes for a specific block number
+func (k Keeper) GetVotes(ctx sdk.Context, blockNum uint64) (list []types.Vote) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.VoteKey))
+	iterator := sdk.KVStorePrefixIterator(store, []byte{})
+
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		var val types.Vote
+		k.cdc.MustUnmarshal(iterator.Value(), &val)
+		if val.Blocknumber == blockNum {
+			list = append(list, val)
+		}
+	}
+
+	return
+}
+
 // HasMaxVotes checks if a proposed state has received the maximum number of votes.
 func (k Keeper) HasMaxVotes(ctx sdk.Context, blockNum uint64) (uint64, bool) {
 	voteCounts := make(map[uint64]int)
