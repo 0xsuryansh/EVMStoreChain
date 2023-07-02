@@ -1,0 +1,12 @@
+syntax = "proto3";
+package evmstorechain.evmstorechain;
+
+import "gogoproto/gogo.proto";
+import "evmstorechain/evmstorechain/params.proto";
+
+option go_package = "EVMStoreChain/x/evmstorechain/types";
+
+// GenesisState defines the evmstorechain module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}

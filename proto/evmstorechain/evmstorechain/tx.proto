@@ -1,0 +1,7 @@
+syntax = "proto3";
+package evmstorechain.evmstorechain;
+
+option go_package = "EVMStoreChain/x/evmstorechain/types";
+
+// Msg defines the Msg service.
+service Msg {}
