@@ -1,0 +1,12 @@
+syntax = "proto3";
+package evmstorechain.evmstorechain;
+
+option go_package = "EVMStoreChain/x/evmstorechain/types";
+
+message Vote {
+  uint64 id = 1;
+  string validator = 2; 
+  uint64 blocknumber = 3; 
+  uint64 state = 4; 
+  
+}

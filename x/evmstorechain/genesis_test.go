@@ -14,6 +14,15 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		VoteList: []types.Vote{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		VoteCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -25,5 +34,7 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
+	require.ElementsMatch(t, genesisState.VoteList, got.VoteList)
+	require.Equal(t, genesisState.VoteCount, got.VoteCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }
