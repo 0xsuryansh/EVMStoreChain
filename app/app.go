@@ -525,7 +525,7 @@ func New(
 		keys[evmstorechainmoduletypes.MemStoreKey],
 		app.GetSubspace(evmstorechainmoduletypes.ModuleName),
 	)
-	evmstorechainModule := evmstorechainmodule.NewAppModule(appCodec, app.EvmstorechainKeeper, app.AccountKeeper, app.BankKeeper, app.SlashingKeeper,)
+	evmstorechainModule := evmstorechainmodule.NewAppModule(appCodec, app.EvmstorechainKeeper, app.AccountKeeper, app.BankKeeper, app.SlashingKeeper, app.StakingKeeper,)
 
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 

@@ -21,6 +21,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"strconv"
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
+	sdkmath "cosmossdk.io/math"
 )
 
 var (
@@ -97,6 +99,7 @@ type AppModule struct {
 	accountKeeper types.AccountKeeper
 	bankKeeper    types.BankKeeper
 	slashingKeeper        slashingkeeper.Keeper
+	stakingKeeper         *stakingkeeper.Keeper
 }
 
 func NewAppModule(
@@ -105,6 +108,7 @@ func NewAppModule(
 	accountKeeper types.AccountKeeper,
 	bankKeeper types.BankKeeper,
 	slashingKeeper        slashingkeeper.Keeper,
+	stakingKeeper         *stakingkeeper.Keeper,
 ) AppModule {
 	return AppModule{
 		AppModuleBasic: NewAppModuleBasic(cdc),
@@ -112,6 +116,7 @@ func NewAppModule(
 		accountKeeper:  accountKeeper,
 		bankKeeper:     bankKeeper,
 		slashingKeeper: slashingKeeper,
+		stakingKeeper: stakingKeeper,
 	}
 }
 
@@ -151,14 +156,43 @@ func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
 func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
     votes := am.keeper.GetAllVote(ctx)
 
-        for _, vote := range votes {
-    	    blockNum := vote.Blocknumber
-    	    state, ok := am.keeper.HasMaxVotes(ctx, blockNum)
-    	    if ok {
-    		    // Maximum votes reached, set the state
-    		    cs := types.Blockstoragestate{Blocknumber : strconv.Itoa(int(blockNum)), State: state}
-    		    am.keeper.SetBlockstoragestate(ctx, cs)
-    	    }
+    for _, vote := range votes {
+        blockNum := vote.Blocknumber
+        state, ok := am.keeper.HasMaxVotes(ctx, blockNum)
+        if ok {
+            // Maximum votes reached, set the state
+            cs := types.Blockstoragestate{Blocknumber : strconv.Itoa(int(blockNum)), State: state}
+            am.keeper.SetBlockstoragestate(ctx, cs)
+
+            // Now check all votes and slash those that are different
+            votesForBlock := am.keeper.GetVotes(ctx, blockNum)
+            for _, v := range votesForBlock {
+                if v.State != state {
+                    // Slash the validator that submitted this vote
+                    validatorAddr, err := sdk.ValAddressFromBech32(v.Validator)
+                    if err != nil {
+                        // handle error
+                        continue
+                    }
+                    validator, found := am.stakingKeeper.GetValidator(ctx, validatorAddr)
+                    if !found {
+                        // handle error
+                        continue
+                    }
+
+                    consAddr := sdk.ConsAddress(validator.GetOperator())
+                    power := validator.GetConsensusPower(sdkmath.ZeroInt())
+                    distributionHeight := ctx.BlockHeight()
+                    fraction := sdkmath.LegacyNewDecWithPrec(2, 3)
+
+
+                    am.slashingKeeper.Slash(ctx, consAddr, fraction, power, distributionHeight)
+                    if err != nil {
+                        // handle error
+                    }
+                }
+            }
         }
-	return []abci.ValidatorUpdate{}
+    }
+    return []abci.ValidatorUpdate{}
 }
