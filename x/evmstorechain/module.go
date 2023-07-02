@@ -19,6 +19,7 @@ import (
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	"strconv"
 )
 
 var (
@@ -143,6 +144,17 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
 
 // EndBlock contains the logic that is automatically triggered at the end of each block
-func (am AppModule) EndBlock(_ sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
+func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
+    votes := am.keeper.GetAllVote(ctx)
+
+        for _, vote := range votes {
+    	    blockNum := vote.Blocknumber
+    	    state, ok := am.keeper.HasMaxVotes(ctx, blockNum)
+    	    if ok {
+    		    // Maximum votes reached, set the state
+    		    cs := types.Blockstoragestate{Blocknumber : strconv.Itoa(int(blockNum)), State: state}
+    		    am.keeper.SetBlockstoragestate(ctx, cs)
+    	    }
+        }
 	return []abci.ValidatorUpdate{}
 }
