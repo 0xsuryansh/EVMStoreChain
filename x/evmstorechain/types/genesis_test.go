@@ -31,6 +31,14 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				VoteCount: 2,
+				BlockstoragestateList: []types.Blockstoragestate{
+					{
+						Blocknumber: "0",
+					},
+					{
+						Blocknumber: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -58,6 +66,20 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				VoteCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated blockstoragestate",
+			genState: &types.GenesisState{
+				BlockstoragestateList: []types.Blockstoragestate{
+					{
+						Blocknumber: "0",
+					},
+					{
+						Blocknumber: "0",
+					},
+				},
 			},
 			valid: false,
 		},

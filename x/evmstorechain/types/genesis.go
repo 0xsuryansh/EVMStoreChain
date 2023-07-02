@@ -10,7 +10,8 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		VoteList: []Vote{},
+		VoteList:              []Vote{},
+		BlockstoragestateList: []Blockstoragestate{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -30,6 +31,16 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("vote id should be lower or equal than the last id")
 		}
 		voteIdMap[elem.Id] = true
+	}
+	// Check for duplicated index in blockstoragestate
+	blockstoragestateIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.BlockstoragestateList {
+		index := string(BlockstoragestateKey(elem.Blocknumber))
+		if _, ok := blockstoragestateIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for blockstoragestate")
+		}
+		blockstoragestateIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

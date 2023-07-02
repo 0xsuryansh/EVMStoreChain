@@ -23,6 +23,14 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		VoteCount: 2,
+		BlockstoragestateList: []types.Blockstoragestate{
+			{
+				Blocknumber: "0",
+			},
+			{
+				Blocknumber: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -36,5 +44,6 @@ func TestGenesis(t *testing.T) {
 
 	require.ElementsMatch(t, genesisState.VoteList, got.VoteList)
 	require.Equal(t, genesisState.VoteCount, got.VoteCount)
+	require.ElementsMatch(t, genesisState.BlockstoragestateList, got.BlockstoragestateList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

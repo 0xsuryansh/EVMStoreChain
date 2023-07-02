@@ -15,6 +15,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 
 	// Set vote count
 	k.SetVoteCount(ctx, genState.VoteCount)
+	// Set all the blockstoragestate
+	for _, elem := range genState.BlockstoragestateList {
+		k.SetBlockstoragestate(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 }
@@ -26,6 +30,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 
 	genesis.VoteList = k.GetAllVote(ctx)
 	genesis.VoteCount = k.GetVoteCount(ctx)
+	genesis.BlockstoragestateList = k.GetAllBlockstoragestate(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

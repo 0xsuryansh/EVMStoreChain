@@ -297,6 +297,190 @@ func (m *QueryAllVoteResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryGetBlockstoragestateRequest struct {
+	Blocknumber string `protobuf:"bytes,1,opt,name=blocknumber,proto3" json:"blocknumber,omitempty"`
+}
+
+func (m *QueryGetBlockstoragestateRequest) Reset()         { *m = QueryGetBlockstoragestateRequest{} }
+func (m *QueryGetBlockstoragestateRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetBlockstoragestateRequest) ProtoMessage()    {}
+func (*QueryGetBlockstoragestateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e485c3eff4a6cde, []int{6}
+}
+func (m *QueryGetBlockstoragestateRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetBlockstoragestateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetBlockstoragestateRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetBlockstoragestateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetBlockstoragestateRequest.Merge(m, src)
+}
+func (m *QueryGetBlockstoragestateRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetBlockstoragestateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetBlockstoragestateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetBlockstoragestateRequest proto.InternalMessageInfo
+
+func (m *QueryGetBlockstoragestateRequest) GetBlocknumber() string {
+	if m != nil {
+		return m.Blocknumber
+	}
+	return ""
+}
+
+type QueryGetBlockstoragestateResponse struct {
+	Blockstoragestate Blockstoragestate `protobuf:"bytes,1,opt,name=blockstoragestate,proto3" json:"blockstoragestate"`
+}
+
+func (m *QueryGetBlockstoragestateResponse) Reset()         { *m = QueryGetBlockstoragestateResponse{} }
+func (m *QueryGetBlockstoragestateResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetBlockstoragestateResponse) ProtoMessage()    {}
+func (*QueryGetBlockstoragestateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e485c3eff4a6cde, []int{7}
+}
+func (m *QueryGetBlockstoragestateResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetBlockstoragestateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetBlockstoragestateResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetBlockstoragestateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetBlockstoragestateResponse.Merge(m, src)
+}
+func (m *QueryGetBlockstoragestateResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetBlockstoragestateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetBlockstoragestateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetBlockstoragestateResponse proto.InternalMessageInfo
+
+func (m *QueryGetBlockstoragestateResponse) GetBlockstoragestate() Blockstoragestate {
+	if m != nil {
+		return m.Blockstoragestate
+	}
+	return Blockstoragestate{}
+}
+
+type QueryAllBlockstoragestateRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllBlockstoragestateRequest) Reset()         { *m = QueryAllBlockstoragestateRequest{} }
+func (m *QueryAllBlockstoragestateRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllBlockstoragestateRequest) ProtoMessage()    {}
+func (*QueryAllBlockstoragestateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e485c3eff4a6cde, []int{8}
+}
+func (m *QueryAllBlockstoragestateRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllBlockstoragestateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllBlockstoragestateRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllBlockstoragestateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllBlockstoragestateRequest.Merge(m, src)
+}
+func (m *QueryAllBlockstoragestateRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllBlockstoragestateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllBlockstoragestateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllBlockstoragestateRequest proto.InternalMessageInfo
+
+func (m *QueryAllBlockstoragestateRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllBlockstoragestateResponse struct {
+	Blockstoragestate []Blockstoragestate `protobuf:"bytes,1,rep,name=blockstoragestate,proto3" json:"blockstoragestate"`
+	Pagination        *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllBlockstoragestateResponse) Reset()         { *m = QueryAllBlockstoragestateResponse{} }
+func (m *QueryAllBlockstoragestateResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllBlockstoragestateResponse) ProtoMessage()    {}
+func (*QueryAllBlockstoragestateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e485c3eff4a6cde, []int{9}
+}
+func (m *QueryAllBlockstoragestateResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllBlockstoragestateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllBlockstoragestateResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllBlockstoragestateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllBlockstoragestateResponse.Merge(m, src)
+}
+func (m *QueryAllBlockstoragestateResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllBlockstoragestateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllBlockstoragestateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllBlockstoragestateResponse proto.InternalMessageInfo
+
+func (m *QueryAllBlockstoragestateResponse) GetBlockstoragestate() []Blockstoragestate {
+	if m != nil {
+		return m.Blockstoragestate
+	}
+	return nil
+}
+
+func (m *QueryAllBlockstoragestateResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "evmstorechain.evmstorechain.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "evmstorechain.evmstorechain.QueryParamsResponse")
@@ -304,6 +488,10 @@ func init() {
 	proto.RegisterType((*QueryGetVoteResponse)(nil), "evmstorechain.evmstorechain.QueryGetVoteResponse")
 	proto.RegisterType((*QueryAllVoteRequest)(nil), "evmstorechain.evmstorechain.QueryAllVoteRequest")
 	proto.RegisterType((*QueryAllVoteResponse)(nil), "evmstorechain.evmstorechain.QueryAllVoteResponse")
+	proto.RegisterType((*QueryGetBlockstoragestateRequest)(nil), "evmstorechain.evmstorechain.QueryGetBlockstoragestateRequest")
+	proto.RegisterType((*QueryGetBlockstoragestateResponse)(nil), "evmstorechain.evmstorechain.QueryGetBlockstoragestateResponse")
+	proto.RegisterType((*QueryAllBlockstoragestateRequest)(nil), "evmstorechain.evmstorechain.QueryAllBlockstoragestateRequest")
+	proto.RegisterType((*QueryAllBlockstoragestateResponse)(nil), "evmstorechain.evmstorechain.QueryAllBlockstoragestateResponse")
 }
 
 func init() {
@@ -311,37 +499,47 @@ func init() {
 }
 
 var fileDescriptor_0e485c3eff4a6cde = []byte{
-	// 480 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x94, 0x4f, 0x6b, 0xd4, 0x40,
-	0x18, 0xc6, 0x33, 0xe9, 0xba, 0xc2, 0x08, 0x1e, 0xc6, 0x3d, 0x48, 0x94, 0x68, 0x27, 0x74, 0xbb,
-	0x2a, 0xcc, 0xb8, 0xf5, 0x28, 0x1e, 0xb6, 0xa2, 0x3d, 0x09, 0x35, 0x85, 0x22, 0x82, 0x87, 0xd9,
-	0xee, 0x10, 0x03, 0xd9, 0x4c, 0x9a, 0x99, 0x2e, 0x16, 0xf1, 0xe2, 0x27, 0x10, 0xbc, 0x28, 0xfa,
-	0x81, 0x7a, 0x2c, 0x78, 0xf1, 0x20, 0x22, 0xbb, 0x7e, 0x10, 0x99, 0x3f, 0xd5, 0x9d, 0x16, 0xd3,
-	0xf4, 0x96, 0xc9, 0x3c, 0xcf, 0xfb, 0xfc, 0x78, 0xdf, 0x37, 0x81, 0xeb, 0x7c, 0x36, 0x95, 0x4a,
-	0xd4, 0x7c, 0xef, 0x35, 0xcb, 0x4b, 0xea, 0x9f, 0xf6, 0x0f, 0x78, 0x7d, 0x48, 0xaa, 0x5a, 0x28,
-	0x81, 0x6e, 0x78, 0x57, 0xc4, 0x3b, 0x45, 0xbd, 0x4c, 0x64, 0xc2, 0xe8, 0xa8, 0x7e, 0xb2, 0x96,
-	0xe8, 0x66, 0x26, 0x44, 0x56, 0x70, 0xca, 0xaa, 0x9c, 0xb2, 0xb2, 0x14, 0x8a, 0xa9, 0x5c, 0x94,
-	0xd2, 0xdd, 0xde, 0xdd, 0x13, 0x72, 0x2a, 0x24, 0x1d, 0x33, 0xc9, 0x6d, 0x12, 0x9d, 0x0d, 0xc7,
-	0x5c, 0xb1, 0x21, 0xad, 0x58, 0x96, 0x97, 0x46, 0xec, 0xb4, 0x83, 0x26, 0xca, 0x8a, 0xd5, 0x6c,
-	0x7a, 0x52, 0xb5, 0xdf, 0xa4, 0x9c, 0x09, 0xc5, 0xad, 0x0e, 0xf7, 0x20, 0x7a, 0xae, 0x33, 0xb7,
-	0x8d, 0x39, 0xe5, 0xfb, 0x07, 0x5c, 0x2a, 0xfc, 0x02, 0x5e, 0xf3, 0xde, 0xca, 0x4a, 0x94, 0x92,
-	0xa3, 0x11, 0xec, 0xda, 0x90, 0xeb, 0xe0, 0x36, 0x18, 0x5c, 0xd9, 0x48, 0x48, 0x43, 0x33, 0x88,
-	0x35, 0x6f, 0x76, 0x8e, 0x7e, 0xde, 0x0a, 0x52, 0x67, 0xc4, 0x6b, 0xae, 0xf2, 0x16, 0x57, 0xbb,
-	0x42, 0x71, 0x17, 0x88, 0xae, 0xc2, 0x30, 0x9f, 0x98, 0xaa, 0x9d, 0x34, 0xcc, 0x27, 0x78, 0x07,
-	0xf6, 0x7c, 0x99, 0x23, 0x78, 0x08, 0x3b, 0xfa, 0xec, 0xf2, 0x57, 0x1b, 0xf3, 0xb5, 0xd0, 0xa5,
-	0x1b, 0x13, 0x7e, 0xe5, 0xb2, 0x47, 0x45, 0xb1, 0x9c, 0xfd, 0x14, 0xc2, 0x7f, 0x8d, 0x76, 0x95,
-	0xfb, 0xc4, 0x4e, 0x85, 0xe8, 0xa9, 0x10, 0x3b, 0x7f, 0x37, 0x15, 0xb2, 0xcd, 0xb2, 0x13, 0x6f,
-	0xba, 0xe4, 0xc4, 0x5f, 0x81, 0x83, 0xfe, 0x5b, 0xff, 0x0c, 0xf4, 0xca, 0x85, 0xa1, 0xd1, 0x96,
-	0x47, 0x17, 0x1a, 0xba, 0xf5, 0x73, 0xe9, 0x6c, 0xf2, 0x32, 0xde, 0xc6, 0x8f, 0x15, 0x78, 0xc9,
-	0xe0, 0xa1, 0x4f, 0x00, 0x76, 0xed, 0x70, 0x10, 0x6d, 0x84, 0x39, 0xbb, 0x19, 0xd1, 0xfd, 0xf6,
-	0x06, 0xcb, 0x80, 0xef, 0xbd, 0xff, 0xf6, 0xfb, 0x63, 0xb8, 0x86, 0x12, 0xfa, 0x64, 0xf7, 0xd9,
-	0x8e, 0xd6, 0x3e, 0xfe, 0xef, 0xf2, 0xa2, 0x2f, 0xc0, 0xf6, 0x0a, 0xb5, 0xc8, 0xf1, 0x57, 0x28,
-	0x1a, 0x5e, 0xc0, 0xe1, 0xd0, 0x88, 0x41, 0x1b, 0xa0, 0x7e, 0x23, 0x9a, 0xfe, 0x5a, 0xe8, 0xdb,
-	0x7c, 0xf2, 0x0e, 0x7d, 0x06, 0xf0, 0xb2, 0x2e, 0x30, 0x2a, 0x8a, 0x36, 0x80, 0xfe, 0x9e, 0xb5,
-	0x01, 0x3c, 0xb5, 0x39, 0xf8, 0x8e, 0x01, 0x4c, 0xd0, 0xea, 0xb9, 0x80, 0x9b, 0x8f, 0x8e, 0xe6,
-	0x31, 0x38, 0x9e, 0xc7, 0xe0, 0xd7, 0x3c, 0x06, 0x1f, 0x16, 0x71, 0x70, 0xbc, 0x88, 0x83, 0xef,
-	0x8b, 0x38, 0x78, 0x99, 0xf8, 0xde, 0x37, 0xa7, 0xdc, 0xea, 0xb0, 0xe2, 0x72, 0xdc, 0x35, 0xbf,
-	0x83, 0x07, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff, 0x20, 0xf4, 0x7c, 0xea, 0x08, 0x05, 0x00, 0x00,
+	// 640 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x95, 0xcf, 0x6b, 0x13, 0x41,
+	0x14, 0xc7, 0x33, 0x69, 0x4d, 0x71, 0x0a, 0x42, 0xc7, 0x1c, 0x24, 0xca, 0x9a, 0x6c, 0x68, 0x1a,
+	0x15, 0x76, 0x9a, 0x16, 0xbc, 0x68, 0x0a, 0x89, 0xd5, 0x9e, 0x84, 0x9a, 0x42, 0x11, 0xc1, 0xc3,
+	0x6c, 0x32, 0xac, 0xab, 0x9b, 0x9d, 0x6d, 0x76, 0x12, 0x2c, 0xa5, 0x17, 0x2f, 0xbd, 0x0a, 0x5e,
+	0x14, 0xfd, 0x83, 0x7a, 0x11, 0x02, 0x5e, 0x7a, 0x12, 0x49, 0xfc, 0x43, 0x64, 0x67, 0x67, 0x35,
+	0x9b, 0x35, 0xd3, 0x8d, 0xe6, 0x96, 0xd9, 0x79, 0xef, 0x7d, 0x3f, 0xef, 0xc7, 0xbc, 0xc0, 0x0d,
+	0x3a, 0xe8, 0xfa, 0x9c, 0xf5, 0x68, 0xfb, 0x15, 0xb1, 0x5d, 0x1c, 0x3f, 0x1d, 0xf5, 0x69, 0xef,
+	0xd8, 0xf0, 0x7a, 0x8c, 0x33, 0x74, 0x33, 0x76, 0x65, 0xc4, 0x4e, 0x85, 0xbc, 0xc5, 0x2c, 0x26,
+	0xec, 0x70, 0xf0, 0x2b, 0x74, 0x29, 0xdc, 0xb2, 0x18, 0xb3, 0x1c, 0x8a, 0x89, 0x67, 0x63, 0xe2,
+	0xba, 0x8c, 0x13, 0x6e, 0x33, 0xd7, 0x97, 0xb7, 0x77, 0xdb, 0xcc, 0xef, 0x32, 0x1f, 0x9b, 0xc4,
+	0xa7, 0xa1, 0x12, 0x1e, 0xd4, 0x4c, 0xca, 0x49, 0x0d, 0x7b, 0xc4, 0xb2, 0x5d, 0x61, 0x2c, 0x6d,
+	0xab, 0x2a, 0x4a, 0x8f, 0xf4, 0x48, 0x37, 0x8a, 0x5a, 0x51, 0x59, 0x0e, 0x18, 0xa7, 0xd2, 0x6e,
+	0x5b, 0x65, 0x67, 0x3a, 0xac, 0xfd, 0x26, 0x38, 0x13, 0x8b, 0xfa, 0x9c, 0x44, 0x4e, 0x7a, 0x1e,
+	0xa2, 0x67, 0x01, 0xe8, 0xbe, 0x50, 0x6c, 0xd1, 0xa3, 0x3e, 0xf5, 0xb9, 0xfe, 0x1c, 0x5e, 0x8f,
+	0x7d, 0xf5, 0x3d, 0xe6, 0xfa, 0x14, 0x35, 0x60, 0x2e, 0x24, 0xbb, 0x01, 0x8a, 0xa0, 0xba, 0xba,
+	0x55, 0x36, 0x14, 0x15, 0x34, 0x42, 0xe7, 0xe6, 0xf2, 0xf9, 0xf7, 0xdb, 0x99, 0x96, 0x74, 0xd4,
+	0xd7, 0x65, 0xe4, 0x3d, 0xca, 0x0f, 0x19, 0xa7, 0x52, 0x10, 0x5d, 0x83, 0x59, 0xbb, 0x23, 0xa2,
+	0x2e, 0xb7, 0xb2, 0x76, 0x47, 0x3f, 0x80, 0xf9, 0xb8, 0x99, 0x24, 0x78, 0x00, 0x97, 0x83, 0xb3,
+	0xd4, 0x2f, 0x29, 0xf5, 0x03, 0x43, 0xa9, 0x2e, 0x9c, 0xf4, 0x97, 0x52, 0xbb, 0xe1, 0x38, 0x93,
+	0xda, 0x4f, 0x20, 0xfc, 0xd3, 0x1d, 0x19, 0xb9, 0x62, 0x84, 0xad, 0x34, 0x82, 0x56, 0x1a, 0xe1,
+	0xd0, 0xc8, 0x56, 0x1a, 0xfb, 0xc4, 0x8a, 0x7c, 0x5b, 0x13, 0x9e, 0xfa, 0x17, 0x20, 0xa1, 0x7f,
+	0xc7, 0x4f, 0x40, 0x2f, 0xcd, 0x0d, 0x8d, 0xf6, 0x62, 0x74, 0x59, 0x41, 0xb7, 0x71, 0x29, 0x5d,
+	0xa8, 0x1c, 0xc3, 0xdb, 0x85, 0xc5, 0xa8, 0xa4, 0xcd, 0xe9, 0x61, 0x88, 0x4a, 0x51, 0x84, 0xab,
+	0x62, 0x50, 0xdc, 0x7e, 0xd7, 0xa4, 0x3d, 0x51, 0x8b, 0xab, 0xad, 0xc9, 0x4f, 0xfa, 0x19, 0x80,
+	0x25, 0x45, 0x18, 0x99, 0xb1, 0x09, 0xd7, 0x12, 0x03, 0x27, 0x2b, 0x6b, 0x28, 0xd3, 0x4f, 0x84,
+	0x94, 0xb5, 0x48, 0x86, 0xd3, 0x5f, 0xcb, 0x7c, 0x1a, 0x8e, 0x33, 0x33, 0x9f, 0x45, 0xb5, 0x76,
+	0x18, 0x65, 0xfd, 0x77, 0x31, 0x75, 0xd6, 0x4b, 0x0b, 0xcc, 0x7a, 0x61, 0xe3, 0xb0, 0x75, 0xb6,
+	0x02, 0xaf, 0x88, 0x94, 0xd0, 0x47, 0x00, 0x73, 0xe1, 0x5b, 0x45, 0x58, 0x89, 0x99, 0x5c, 0x14,
+	0x85, 0xcd, 0xf4, 0x0e, 0x21, 0x83, 0x7e, 0xef, 0xdd, 0xb7, 0x9f, 0x1f, 0xb2, 0xeb, 0xa8, 0x8c,
+	0x1f, 0x1f, 0x3e, 0x3d, 0x08, 0x6c, 0x1f, 0xcd, 0x5c, 0x80, 0xe8, 0x33, 0x08, 0x9f, 0x0e, 0x4a,
+	0xa1, 0x13, 0xdf, 0x28, 0x85, 0xda, 0x1c, 0x1e, 0x12, 0xcd, 0x10, 0x68, 0x55, 0x54, 0x51, 0xa2,
+	0x05, 0x1b, 0x17, 0x9f, 0xd8, 0x9d, 0x53, 0xf4, 0x09, 0xc0, 0x95, 0x20, 0x40, 0xc3, 0x71, 0xd2,
+	0x00, 0xc6, 0xd7, 0x4e, 0x1a, 0xc0, 0xa9, 0x45, 0xa2, 0xdf, 0x11, 0x80, 0x65, 0x54, 0xba, 0x14,
+	0x10, 0x5d, 0x00, 0xb8, 0x96, 0x18, 0x2b, 0x54, 0x4f, 0x55, 0x94, 0x59, 0xcf, 0xa9, 0xb0, 0xf3,
+	0xaf, 0xee, 0x92, 0x7f, 0x57, 0xf0, 0xef, 0xa0, 0x87, 0x4a, 0xfe, 0xc4, 0xd0, 0xe3, 0x93, 0x89,
+	0x0d, 0x74, 0x8a, 0xbe, 0x02, 0x98, 0x4f, 0x68, 0x04, 0x3d, 0xa8, 0xa7, 0xaa, 0xe8, 0xff, 0x64,
+	0xa7, 0x7a, 0xfe, 0xfa, 0x7d, 0x91, 0xdd, 0x26, 0x32, 0xe6, 0xcb, 0xae, 0x59, 0x3f, 0x1f, 0x69,
+	0x60, 0x38, 0xd2, 0xc0, 0x8f, 0x91, 0x06, 0xde, 0x8f, 0xb5, 0xcc, 0x70, 0xac, 0x65, 0x2e, 0xc6,
+	0x5a, 0xe6, 0x45, 0x39, 0x1e, 0xe8, 0xed, 0x54, 0x28, 0x7e, 0xec, 0x51, 0xdf, 0xcc, 0x89, 0x3f,
+	0xf2, 0xed, 0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x88, 0xce, 0x4b, 0xda, 0xf7, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -361,6 +559,9 @@ type QueryClient interface {
 	// Queries a list of Vote items.
 	Vote(ctx context.Context, in *QueryGetVoteRequest, opts ...grpc.CallOption) (*QueryGetVoteResponse, error)
 	VoteAll(ctx context.Context, in *QueryAllVoteRequest, opts ...grpc.CallOption) (*QueryAllVoteResponse, error)
+	// Queries a list of Blockstoragestate items.
+	Blockstoragestate(ctx context.Context, in *QueryGetBlockstoragestateRequest, opts ...grpc.CallOption) (*QueryGetBlockstoragestateResponse, error)
+	BlockstoragestateAll(ctx context.Context, in *QueryAllBlockstoragestateRequest, opts ...grpc.CallOption) (*QueryAllBlockstoragestateResponse, error)
 }
 
 type queryClient struct {
@@ -398,6 +599,24 @@ func (c *queryClient) VoteAll(ctx context.Context, in *QueryAllVoteRequest, opts
 	return out, nil
 }
 
+func (c *queryClient) Blockstoragestate(ctx context.Context, in *QueryGetBlockstoragestateRequest, opts ...grpc.CallOption) (*QueryGetBlockstoragestateResponse, error) {
+	out := new(QueryGetBlockstoragestateResponse)
+	err := c.cc.Invoke(ctx, "/evmstorechain.evmstorechain.Query/Blockstoragestate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) BlockstoragestateAll(ctx context.Context, in *QueryAllBlockstoragestateRequest, opts ...grpc.CallOption) (*QueryAllBlockstoragestateResponse, error) {
+	out := new(QueryAllBlockstoragestateResponse)
+	err := c.cc.Invoke(ctx, "/evmstorechain.evmstorechain.Query/BlockstoragestateAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -405,6 +624,9 @@ type QueryServer interface {
 	// Queries a list of Vote items.
 	Vote(context.Context, *QueryGetVoteRequest) (*QueryGetVoteResponse, error)
 	VoteAll(context.Context, *QueryAllVoteRequest) (*QueryAllVoteResponse, error)
+	// Queries a list of Blockstoragestate items.
+	Blockstoragestate(context.Context, *QueryGetBlockstoragestateRequest) (*QueryGetBlockstoragestateResponse, error)
+	BlockstoragestateAll(context.Context, *QueryAllBlockstoragestateRequest) (*QueryAllBlockstoragestateResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -419,6 +641,12 @@ func (*UnimplementedQueryServer) Vote(ctx context.Context, req *QueryGetVoteRequ
 }
 func (*UnimplementedQueryServer) VoteAll(ctx context.Context, req *QueryAllVoteRequest) (*QueryAllVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VoteAll not implemented")
+}
+func (*UnimplementedQueryServer) Blockstoragestate(ctx context.Context, req *QueryGetBlockstoragestateRequest) (*QueryGetBlockstoragestateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Blockstoragestate not implemented")
+}
+func (*UnimplementedQueryServer) BlockstoragestateAll(ctx context.Context, req *QueryAllBlockstoragestateRequest) (*QueryAllBlockstoragestateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockstoragestateAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -479,6 +707,42 @@ func _Query_VoteAll_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Blockstoragestate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetBlockstoragestateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Blockstoragestate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/evmstorechain.evmstorechain.Query/Blockstoragestate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Blockstoragestate(ctx, req.(*QueryGetBlockstoragestateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_BlockstoragestateAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllBlockstoragestateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).BlockstoragestateAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/evmstorechain.evmstorechain.Query/BlockstoragestateAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).BlockstoragestateAll(ctx, req.(*QueryAllBlockstoragestateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "evmstorechain.evmstorechain.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -494,6 +758,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VoteAll",
 			Handler:    _Query_VoteAll_Handler,
+		},
+		{
+			MethodName: "Blockstoragestate",
+			Handler:    _Query_Blockstoragestate_Handler,
+		},
+		{
+			MethodName: "BlockstoragestateAll",
+			Handler:    _Query_BlockstoragestateAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -701,6 +973,153 @@ func (m *QueryAllVoteResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetBlockstoragestateRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetBlockstoragestateRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetBlockstoragestateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Blocknumber) > 0 {
+		i -= len(m.Blocknumber)
+		copy(dAtA[i:], m.Blocknumber)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Blocknumber)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetBlockstoragestateResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetBlockstoragestateResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetBlockstoragestateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Blockstoragestate.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllBlockstoragestateRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllBlockstoragestateRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllBlockstoragestateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllBlockstoragestateResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllBlockstoragestateResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllBlockstoragestateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Blockstoragestate) > 0 {
+		for iNdEx := len(m.Blockstoragestate) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Blockstoragestate[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -776,6 +1195,62 @@ func (m *QueryAllVoteResponse) Size() (n int) {
 	_ = l
 	if len(m.Vote) > 0 {
 		for _, e := range m.Vote {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetBlockstoragestateRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Blocknumber)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetBlockstoragestateResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Blockstoragestate.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllBlockstoragestateRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllBlockstoragestateResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Blockstoragestate) > 0 {
+		for _, e := range m.Blockstoragestate {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -1224,6 +1699,377 @@ func (m *QueryAllVoteResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Vote = append(m.Vote, Vote{})
 			if err := m.Vote[len(m.Vote)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetBlockstoragestateRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetBlockstoragestateRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetBlockstoragestateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Blocknumber", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Blocknumber = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetBlockstoragestateResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetBlockstoragestateResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetBlockstoragestateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Blockstoragestate", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Blockstoragestate.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllBlockstoragestateRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllBlockstoragestateRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllBlockstoragestateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllBlockstoragestateResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllBlockstoragestateResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllBlockstoragestateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Blockstoragestate", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Blockstoragestate = append(m.Blockstoragestate, Blockstoragestate{})
+			if err := m.Blockstoragestate[len(m.Blockstoragestate)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
