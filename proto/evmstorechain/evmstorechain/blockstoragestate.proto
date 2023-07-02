@@ -1,0 +1,11 @@
+syntax = "proto3";
+package evmstorechain.evmstorechain;
+
+option go_package = "EVMStoreChain/x/evmstorechain/types";
+
+message Blockstoragestate {
+  string blocknumber = 1; 
+  uint64 state = 2; 
+  
+}
+
