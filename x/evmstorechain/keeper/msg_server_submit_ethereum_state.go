@@ -12,11 +12,11 @@ func (k msgServer) SubmitEthereumState(goCtx context.Context, msg *types.MsgSubm
 
 	// TODO: Handling the message
 	vote := types.Vote{
-    		Validator:   msg.Creator,
-    		Blocknumber: msg.Blocknumber,
-    		State:       msg.State,
-    	}
-    k.AppendVote(ctx, vote)
+		Validator:   msg.Creator,
+		Blocknumber: msg.Blocknumber,
+		State:       msg.State,
+	}
+	k.AppendVote(ctx, vote)
 
 	_ = ctx
 
