@@ -1,7 +1,18 @@
 syntax = "proto3";
+
 package evmstorechain.evmstorechain;
 
 option go_package = "EVMStoreChain/x/evmstorechain/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc SubmitEthereumState (MsgSubmitEthereumState) returns (MsgSubmitEthereumStateResponse);
+}
+message MsgSubmitEthereumState {
+  string creator     = 1;
+  uint64 blocknumber = 2;
+  uint64 state       = 3;
+}
+
+message MsgSubmitEthereumStateResponse {}
+
