@@ -2,14 +2,92 @@ package main
 
 import (
     "context"
-    "strconv"
-    "fmt"
+    "github.com/ethereum/go-ethereum/ethclient"
+    "github.com/ethereum/go-ethereum/common"
+    "github.com/ethereum/go-ethereum/accounts/abi"
+    "github.com/ethereum/go-ethereum"
+    "math/big"
+    "io/ioutil"
     "log"
-     "github.com/ignite/cli/ignite/pkg/cosmosclient"
-     "evmstorechain/x/evmstorechain/types"
+    "os"
+    "fmt"
+    "strconv"
+    "strings"
+    "github.com/ignite/cli/ignite/pkg/cosmosclient"
+    "evmstorechain/x/evmstorechain/types"
 )
 
+type EthState struct {
+    Blocknumber *big.Int
+    BorrowIndex *big.Int
+}
+
+const contractAddress = "0xf650C3d88D12dB855b8bf7D11Be6C55A4e07dCC9"
+
 func main() {
+    ethState := getStateFromEthereum()
+    PostEthereumStateToCosmos(ethState.Blocknumber, ethState.BorrowIndex)
+    QueryEthereumStateFromCosmos(ethState.Blocknumber)
+}
+
+func getStateFromEthereum() *EthState {
+    abiBytes, err := ioutil.ReadFile("abi.json")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Convert []byte to string
+    contractAbi := string(abiBytes)
+
+    fmt.Println("Querying borrowIndex from Ethereum")
+
+    // Get Infura URL from environment variable
+    infuraURL := os.Getenv("INFURA_URL")
+
+    client, err := ethclient.Dial(infuraURL)
+    if err != nil {
+        log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+    }
+
+    parsedABI, err := abi.JSON(strings.NewReader(contractAbi))
+    if err != nil {
+        log.Fatalf("Failed to parse contract ABI: %v", err)
+    }
+
+    contractAddress := common.HexToAddress(contractAddress)
+
+    borrowIndex := parsedABI.Methods["borrowIndex"]
+
+    callMsg := ethereum.CallMsg{
+        To:   &contractAddress,
+        Data: borrowIndex.ID,
+    }
+
+    header, err := client.HeaderByNumber(context.Background(), nil)
+    if err != nil {
+        log.Fatalf("Failed to get header: %v", err)
+    }
+
+    res, err := client.CallContract(context.Background(), callMsg, header.Number)
+    if err != nil {
+        log.Fatalf("Failed to execute function call: %v", err)
+    }
+
+    borrowIndexRes := new(big.Int)
+    borrowIndexRes.SetBytes(res)
+
+    fmt.Printf("BorrowIndex: %s\n", borrowIndexRes.String()) // Print the result
+
+    // Print the borrowIndex
+    log.Printf("Block number: %s, Borrow Index: %s", header.Number.String(), borrowIndexRes.String())
+
+    return &EthState{
+        Blocknumber: header.Number,
+        BorrowIndex: borrowIndexRes,
+    }
+}
+
+func PostEthereumStateToCosmos(blockNum, borrowIndex *big.Int) {
     ctx := context.Background()
     addressPrefix := "cosmosvaloper"
 
@@ -32,12 +110,10 @@ func main() {
     }
 
     // msg to submit a state
-    var blocknum uint64 = 1
-    var state uint64 = 12
     msg := &types.MsgSubmitEthereumState{
         Creator:     addr,
-        Blocknumber: blocknum,
-        State:       state,
+        Blocknumber: blockNum.Uint64(),
+        State:       borrowIndex.Uint64(),
     }
 
     //broadcast transaction from accountName "alice"
@@ -48,12 +124,19 @@ func main() {
     }
     fmt.Println("Ethereum State Submited")
     fmt.Println(txResp)
+}
 
-    // Query
+func QueryEthereumStateFromCosmos(blockNum *big.Int) {
+    ctx := context.Background()
+    client, err := cosmosclient.New(ctx, cosmosclient.WithAddressPrefix("cosmos"))
+    if err != nil {
+        log.Fatalf("Failed to connect to the Cosmos client: %v", err)
+    }
     queryClient := types.NewQueryClient(client.Context())
-    queryResp, err := queryClient.Blockstoragestate(ctx, &types.QueryGetBlockstoragestateRequest{ Blocknumber: strconv.FormatUint(blocknum,10)})
+    queryResp, err := queryClient.Blockstoragestate(ctx, &types.QueryGetBlockstoragestateRequest{ Blocknumber: strconv.FormatUint(blockNum.Uint64(),10)})
     if err!=nil {
         log.Fatal(err)
     }
+    fmt.Println("Query Result")
     fmt.Println(queryResp)
 }
