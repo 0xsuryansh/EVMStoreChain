@@ -20,8 +20,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"strconv"
-	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
-	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	sdkmath "cosmossdk.io/math"
 )
 
@@ -98,8 +96,6 @@ type AppModule struct {
 	keeper        keeper.Keeper
 	accountKeeper types.AccountKeeper
 	bankKeeper    types.BankKeeper
-	slashingKeeper        slashingkeeper.Keeper
-	stakingKeeper         *stakingkeeper.Keeper
 }
 
 func NewAppModule(
@@ -107,16 +103,12 @@ func NewAppModule(
 	keeper keeper.Keeper,
 	accountKeeper types.AccountKeeper,
 	bankKeeper types.BankKeeper,
-	slashingKeeper        slashingkeeper.Keeper,
-	stakingKeeper         *stakingkeeper.Keeper,
 ) AppModule {
 	return AppModule{
 		AppModuleBasic: NewAppModuleBasic(cdc),
 		keeper:         keeper,
 		accountKeeper:  accountKeeper,
 		bankKeeper:     bankKeeper,
-		slashingKeeper: slashingKeeper,
-		stakingKeeper: stakingKeeper,
 	}
 }
 
@@ -174,7 +166,7 @@ func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.Val
                         // handle error
                         continue
                     }
-                    validator, found := am.stakingKeeper.GetValidator(ctx, validatorAddr)
+                    validator, found := am.keeper.StakingKeeper.GetValidator(ctx, validatorAddr)
                     if !found {
                         // handle error
                         continue
@@ -186,7 +178,7 @@ func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.Val
                     fraction := sdkmath.LegacyNewDecWithPrec(2, 3)
 
 
-                    am.slashingKeeper.Slash(ctx, consAddr, fraction, power, distributionHeight)
+                    am.keeper.SlashingKeeper.Slash(ctx, consAddr, fraction, power, distributionHeight)
                     if err != nil {
                         // handle error
                     }

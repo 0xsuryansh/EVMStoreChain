@@ -10,6 +10,8 @@ import (
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
 	"EVMStoreChain/x/evmstorechain/types"
+	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
+    stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 )
 
 type (
@@ -18,6 +20,8 @@ type (
 		storeKey   storetypes.StoreKey
 		memKey     storetypes.StoreKey
 		paramstore paramtypes.Subspace
+		SlashingKeeper        slashingkeeper.Keeper
+        StakingKeeper         *stakingkeeper.Keeper
 	}
 )
 
@@ -26,6 +30,8 @@ func NewKeeper(
 	storeKey,
 	memKey storetypes.StoreKey,
 	ps paramtypes.Subspace,
+	slashingKeeper        slashingkeeper.Keeper,
+    stakingKeeper         *stakingkeeper.Keeper,
 
 ) *Keeper {
 	// set KeyTable if it has not already been set
@@ -38,6 +44,8 @@ func NewKeeper(
 		storeKey:   storeKey,
 		memKey:     memKey,
 		paramstore: ps,
+		SlashingKeeper: slashingKeeper,
+        StakingKeeper: stakingKeeper,
 	}
 }
 
