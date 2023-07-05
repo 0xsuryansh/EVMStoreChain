@@ -68,13 +68,13 @@ go run main.go
 This client fetches the borrowIndex of the Compound's cUSDT token of the latest block and posts it as a vote to the Cosmos blockchain using the SubmitEthereumState function. You can then query the state with the highest vote.
 
 ### Using CLI
-```
+
 For validator voting,
-EVMStoreChaind tx evmstorechain submit-ethereum-state [blocknumber] [state] --from alice
+`EVMStoreChaind tx evmstorechain submit-ethereum-state [blocknumber] [state] --from [account]`
 
 For querying 
-EVMStoreChaind q evmstorechain show-blockstoragestate [blocknumber]
-```
+`EVMStoreChaind q evmstorechain show-blockstoragestate [blocknumber]`
+
 
 
 
