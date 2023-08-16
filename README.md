@@ -1,6 +1,5 @@
 # EVMStoreChain
-EVMStoreChain is a Cosmos SDK-based blockchain that allows validators to read the state from Ethereum, post the Ethereum state to the Cosmos blockchain as a vote, and query the agreed-upon state. This application interacts with the Compound protocol to fetch the borrowIndex of the cUSDT token of the latest block and post it as a vote to the Cosmos blockchain.
-
+EVMStoreChain is a Cosmos SDK-based blockchain that allows validators to read the state from Ethereum, post the Ethereum state to the Cosmos blockchain as a vote, and query the agreed-upon state. 
 ### Problem Statement / Requirement
 - Utilize the Cosmos SDK to build a prototype blockchain that can read the state from Ethereum, verify its validity, and store it on your chain.
 - The chain should be able to agree upon some Ethereum state. There should be a mechanism that facilitates this agreement. The state itself should be a single storage slot of some address.
